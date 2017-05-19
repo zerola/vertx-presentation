@@ -33,8 +33,9 @@ public class Server extends AbstractVerticle {
             .addOutboundPermitted(new PermittedOptions().setAddress("bcast"));
         sockJSHandler.bridge(options);
 
-        router.route().handler(ctx -> ctx.response()
-                .putHeader("X-FRAME-OPTIONS", "ALLOW"));
+        router.route("/ebus.html").handler(ctx -> ctx.response()
+                .putHeader("X-FRAME-OPTIONS", "ALLOW")
+                .sendFile("presentation/ebus.html"));
         router.route("/eventbus/*").handler(sockJSHandler);
         router.route("/*").handler(StaticHandler.create("presentation"));
         vertx.createHttpServer()
