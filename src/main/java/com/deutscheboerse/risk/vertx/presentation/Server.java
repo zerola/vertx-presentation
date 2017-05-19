@@ -34,7 +34,7 @@ public class Server extends AbstractVerticle {
         sockJSHandler.bridge(options);
 
         router.route("/ebus.html").handler(ctx -> ctx.response()
-                .putHeader("X-Frame-Options", "SAMEORIGIN")
+                .putHeader("X-Frame-Options", "ALLOWALL")
                 .sendFile("presentation/ebus.html"));
         router.route("/eventbus/*").handler(sockJSHandler);
         router.route("/*").handler(StaticHandler.create("presentation"));
