@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://cdn.jsdelivr.net/sockjs/0.3.4/sockjs.min.js"></script>
+    <script src='vertx-eventbus.js'></script>
+
+    <script>
+        var eb = new EventBus('http://localhost:8080/eventbus');
+
+        function onOpen() {
+            console.log('connection established');
+            eb.registerHandler('bcast', function(error, message) {
+                console.log('received a message: ' + JSON.stringify(message));
+                var textArea = document.getElementById("messages");
+                textArea.value += message.body + "\n";
+                textArea.scrollTop = textArea.scrollHeight;
+            });
+        }
+
+        eb.onopen = onOpen;
+
+        function start() {
+            eb.send('start', {});
+        }
+
+        function stop() {
+            eb.send('stop', {});
+        }
+
+    </script>
+</head>
+<body>
+<form>
+    <textarea id="messages" cols="50" rows="10"></textarea>
+    <br>
+    <input type="button" id="startButton" value="Start" onclick="start();"/>
+    <input type="button" id="stopButton" value="Stop" onclick="stop();" />
+    <input type="reset" id="clearButton" value="Clear" />
+</form>
+</body>
+</html>
