@@ -30,10 +30,20 @@
         }
 
     </script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+        * {
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
 <form>
-    <textarea id="messages" cols="50" rows="10"></textarea>
+    <textarea id="messages" style="width: 100%" cols="75" rows="15"></textarea>
     <br>
     <input type="button" id="startButton" value="Start" onclick="start();"/>
     <input type="button" id="stopButton" value="Stop" onclick="stop();" />
