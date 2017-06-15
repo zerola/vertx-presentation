@@ -1,6 +1,7 @@
 # Vert.x presentation for PTI 2017 in Deutsche Boerse
 
 [Slides](https://zerola.github.io/vertx-presentation) wihout demo.
+[Presentation](https://youtu.be/zX6-FXzeD4I).
 
 # Build a Docker Image
 
